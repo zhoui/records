@@ -1,2 +1,1 @@
-test
-====
+test kinds of test
