@@ -1,6 +1,14 @@
 var TJ = 
 [
 	{
+		"date":"20140829",
+		"type":"recharge",
+		"summary":"充值",
+		"details": {
+			"王垒":"+100"
+		}
+	},
+	{
 		"date":"20140822",
 		"type":"consume",
 		"summary":"场地80,七个人(荷叶老公),球费2元/人",
