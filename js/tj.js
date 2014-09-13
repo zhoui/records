@@ -8,6 +8,7 @@
 		}
 		for(v in record.details) {
 			member[v] = member[v] || {
+				name:v,
 				balance:"",
 				count:0,
 				rechargeDtls:[],
@@ -30,7 +31,7 @@
 		}
 	}
 	
-	//_memberCard's records
+	//filter _memberCard's records
 	var memberCard = member['_memberCard'];
 	delete member['_memberCard'];
 	
@@ -53,30 +54,44 @@
 		"#consumeRecordsLength":consumeRecords.length,
 	};
 	var table = [
-			'<thead><tr rowspan="2"><td colspan="4">' + '#label_title' + '</td></tr><tr><td colspan="3"><label>#label_memberCount：#memberCount, #label_totleBalance：#totleBalance, #label_memberCardBalance：#memberCardBalance, #label_profit：#profit</label></td><td><a target="_blank" href="./js/data.js">数据明细</a></td></tr></thead>',
+			'<thead>',
+			'<tr rowspan="2"><td colspan="4">' + '#label_title' + '</td></tr>',
+			'<tr><td colspan="4"><label>#label_memberCount：#memberCount, #label_totleBalance：#totleBalance, #label_memberCardBalance：#memberCardBalance, #label_profit：#profit</label></td><td colspan=',
+			consumeRecords.length - 2,
+			'><a target="_blank" href="./js/data.js">数据明细</a></td></tr>',
+			'</thead>',
+			'<tbody>',
 			'<tr>',
 			'<th rowspan="2" >#label_memberName</th>',
 			'<th rowspan="2" >#label_balance</th>',
 			'<th colspan="#consumeRecordsLength" >#label_consumeDtls</th>',
 			'</tr>',
-			'<tr class="center"><td>' + consumeRecords.join('</td><td>').replace(/#/g,'') + '</td></tr>'
+			'<tr><td>' + consumeRecords.join('</td><td>').replace(/#/g,'') + '</td></tr>'
 		];
 	
-	//TODO sort by consume count
-	
+	// convert to array
+	var memberArray = [];
 	for(r in member) {
+		memberArray.push(member[r]);
+	}
+	// sort by consume count
+	memberArray.sort(function(m1, m2) {
+		return m2.count - m1.count;
+	});
+	
+	for(var i=0; i<memberArray.length; ++i) {
 		var tr = [];
-		tr.push('<td>' + r + ' <label title="#label_rechargeDtls\r\n' + member[r].rechargeDtls.join('\r\n') + '">??</label>' + '</td>');
-		tr.push('<td>' + member[r].balance + '</td>');
-		vMap['#totleBalance'] += member[r].balance;
+		tr.push('<td>' + memberArray[i].name + '<sup>' + memberArray[i].count + '</sup>' + ' <label title="#label_rechargeDtls\r\n' + memberArray[i].rechargeDtls.join('\r\n') + '">??</label>' + '</td>');
+		tr.push('<td>' + memberArray[i].balance + '</td>');
+		vMap['#totleBalance'] += memberArray[i].balance;
 		vMap['#memberCount']++;
-		for(var i=0; i<consumeRecords.length; i++) {
-			var date = consumeRecords[i].split('#')[0];
-			tr.push('<td>' + (member[r].consumeDtls[date] || '') + '</td>');
+		for(var j=0; j<consumeRecords.length; j++) {
+			var date = consumeRecords[j].split('#')[0];
+			tr.push('<td>' + (memberArray[i].consumeDtls[date] || '') + '</td>');
 		}
 		table.push('<tr>' + tr.join('') + '</tr>');
 	}
-	
+	table.push('</tbody>', '<tfoot>', '<tr><td colspan=', consumeRecords.length + 2, ' ><sub>powered BY https://github.com/zhoui/records</sub></td></tr>', '</tfoot');
 	//profit
 	vMap['#profit'] = vMap['#totleBalance'] - vMap['#memberCardBalance'];
 	
