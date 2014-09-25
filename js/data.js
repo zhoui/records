@@ -1,5 +1,15 @@
 var TJ = 
 [
+	
+	{
+		"date":"20140925",
+		"type":"recharge",
+		"summary":"罗冲100肖冲50",
+		"details": {
+			"罗洵":"+100",
+			"肖中维":"+50"
+		}
+	},
 	{
 		"date":"20140922",
 		"type":"recharge",
