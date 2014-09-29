@@ -1,6 +1,14 @@
 var TJ = 
 [
 	{
+		"date":"20140928",
+		"type":"recharge",
+		"summary":"充值",
+		"details": {
+			"薛肖":"+100"
+		}
+	},
+	{
 		"date":"20140926",
 		"type":"consume",
 		"summary":"场地费80,15人打球(1人免单),球费1元/1人",
