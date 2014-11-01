@@ -11,6 +11,7 @@ sup {
     font-weight: bold;
 }
 .center { text-align: center }
+.toPage { padding-left: 5px }
 #tj {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     width: 100%;
