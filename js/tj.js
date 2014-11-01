@@ -41,7 +41,7 @@
 	pageSize = Math.min(consumeRecords.length, pageSize);
 	
 	var pageNums = consumeRecords.length/pageSize;
-	pageNums = Number.isInteger(pageNums)? pageNums:Math.ceil(pageNums);
+	pageNums = pageNums%1 === 0? pageNums:Math.ceil(pageNums);
 	var pageNumsStr = [];
 	for(var p=1; p<pageNums+1; p++) {
 		pageNumsStr.push('<a href="#" class="toPage">' + p + '</a>');
