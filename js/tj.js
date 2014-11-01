@@ -89,9 +89,10 @@
 	for(r in members) {
 		membersArray.push(members[r]);
 	}
-	// sort by consume count
+	// sort by consume count & balance
 	membersArray.sort(function(m1, m2) {
-		return m2.count - m1.count;
+		var rst = m2.count - m1.count;
+		return rst == 0 ? m2.balance - m1.balance : rst;
 	});
 	
 	for(var i=0; i<membersArray.length; ++i) {
