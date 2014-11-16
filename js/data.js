@@ -22,8 +22,9 @@ var TJ =
 	{
 		"date":"20141114",
 		"type":"recharge",
-		"summary":"充值",
+		"summary":"会员充值+200,会员卡+500",
 		"details": {
+			"_memberCard":"+500",
 			"邬海艳":"+100",
 			"何兴":"+100"
 		}
