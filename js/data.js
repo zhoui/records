@@ -5,7 +5,7 @@ var TJ =
 		"type":"recharge",
 		"summary":"充值给会员卡",
 		"details": {
-			"_memberCard":"+1000""
+			"_memberCard":"+1000"
 		}
 	},
 	{
