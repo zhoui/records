@@ -1,6 +1,16 @@
 var TJ = 
 [
 	{
+		"date":"20150508",
+		"type":"consume",
+		"summary":"场地费80,1人打球",
+		"details": {
+			"_memberCard":"-80",
+			"王垒":"-40",
+			"所有人平坦":"-40"
+		}
+	},
+	{
 		"date":"20150424",
 		"type":"consume",
 		"summary":"场地费80,5人打球",
